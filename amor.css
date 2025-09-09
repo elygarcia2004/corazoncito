@@ -1,0 +1,189 @@
+
+                                body {
+    font-family: 'Poppins', sans-serif;
+    overflow: hidden;
+    cursor: default;
+    overscroll-behavior-y: contain;
+
+    background: linear-gradient(-45deg, #fce1e4, #f4c2c2, #ffcad4, #fde2e4);
+    background-size: 400% 400%;
+    animation: gradient-animation 20s ease infinite;
+}
+
+@keyframes gradient-animation {
+    0% { background-position: 0% 50%; }
+    50% { background-position: 100% 50%; }
+    100% { background-position: 0% 50%; }
+}
+
+#background-particles-canvas {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+    z-index: 1;
+}
+
+#click-message {
+    position: absolute;
+    top: 30%;
+    left: 50%;
+    transform: translateX(-50%);
+    font-size: 1.5rem;
+    z-index: 30;
+    opacity: 1;
+    transition: opacity 0.5s ease-out;
+}
+
+#click-message.hidden {
+    opacity: 0;
+    pointer-events: none;
+}
+
+#large-heart {
+    width: 250px;
+    height: 250px;
+    z-index: 15;
+    animation: beat 1.4s infinite;
+
+    transition: transform 0.5s ease, opacity 0.5s ease;
+}
+
+@keyframes beat {
+    0%, 100% { transform: scale(1); }
+    25% { transform: scale(1.05); }
+    50% { transform: scale(1); }
+    75% { transform: scale(1.02); }
+}
+
+#large-heart.exploded {
+    animation: pulse-and-shrink 0.6s forwards;
+}
+
+@keyframes pulse-and-shrink {
+    0% { transform: scale(1); opacity: 1; }
+    50% { transform: scale(1.2); opacity: 0.8; }
+    100% { transform: scale(0); opacity: 0; }
+}
+
+#confetti-canvas {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+    z-index: 10;
+}
+
+.phrase-item {
+    position: absolute;
+    font-family: 'Pacifico', cursive;
+    font-size: 1.8rem;
+    color: #cc0000;
+    text-shadow: 1px 1px 2px rgba(0,0,0,0.2);
+    opacity: 0;
+    transform: translateX(-50%) translateY(-50%) scale(0);
+    transition: all 1.5s ease-out;
+    pointer-events: none;
+    white-space: nowrap;
+    z-index: 20;
+    text-align: center;
+}
+
+.phrase-item.active {
+    opacity: 1;
+    transform: translateX(-50%) translateY(calc(-50% - 180px)) scale(1);
+}
+
+.phrase-item.fade-out {
+    opacity: 0;
+    transform: translateX(-50%) translateY(calc(-50% - 250px)) scale(0.7);
+    transition: all 1.5s ease-in;
+}
+
+#te-amo-phrase {
+    position: absolute;
+    font-family: 'Pacifico', cursive;
+    font-size: 5rem;
+    color: #ff0000;
+    text-shadow: 2px 2px 5px rgba(0,0,0,0.3);
+    opacity: 0;
+    transform: translateX(-50%) translateY(-50%) scale(0.5);
+    transition: all 1s ease-out;
+    pointer-events: none;
+    z-index: 25;
+    text-align: center;
+    white-space: nowrap;
+}
+
+#te-amo-phrase.visible {
+    opacity: 1;
+    transform: translateX(-50%) translateY(-50%) scale(1);
+}
+
+#restart-button {
+    position: fixed;
+    bottom: 30px;
+    left: 50%;
+    transform: translateX(-50%) scale(0);
+    transform-origin: center;
+    opacity: 0;
+
+    display: flex;
+    align-items: center;
+    gap: 8px;
+
+    padding: 12px 24px;
+    font-family: 'Poppins', sans-serif;
+    font-size: 1rem;
+    font-weight: 600;
+    color: white;
+    background-color: #e91e63;
+    border: none;
+    border-radius: 50px;
+    cursor: pointer;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+
+    z-index: 100;
+    transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    pointer-events: none;
+}
+
+#restart-button.visible {
+    transform: translateX(-50%) scale(1);
+    opacity: 1;
+    pointer-events: auto;
+}
+
+#restart-button:hover {
+    transform: translateX(-50%) scale(1.05);
+    background-color: #c2185b;
+    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.25);
+}
+
+#restart-button .icon {
+    width: 20px;
+    height: 20px;
+}
+
+@media (max-width: 768px) {
+    #click-message { font-size: 1.25rem; }
+    .phrase-item { font-size: 1.4rem; }
+    #te-amo-phrase { font-size: 14rem; }
+}
+
+@media (max-width: 640px) {
+    #click-message { top: 25%; font-size: 1.1rem; }
+    #large-heart { width: 180px; height: 180px; }
+    .phrase-item { font-size: 1.2rem; }
+    #te-amo-phrase { font-size: 10rem; }
+}
+
+@media (max-width: 480px) {
+    .phrase-item { font-size: 1rem; }
+    #te-amo-phrase { font-size: 8rem; }
+}
+                            
